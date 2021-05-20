@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tray Embedded Sidebar</title>
+</head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="globalStyles.css">
+<link rel="stylesheet" href="styles.css">
+<body>
+    <div id="loading-linked-issues">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div id="wrapper">
+        <div id="header">
+            <div id="inner-header">
+                <img src="https://www.finsmes.com/wp-content/uploads/2019/11/tray-io.jpg" alt="logo" class="logo">
+            </div>
+        </div>
+        <div id="main">
+            <div id="tray-plugin">
+                <div class="panel-group">
+                    <div class="plugin-buttons">
+                        <button class="btn btn-default config-button" type="button" id="load-solutions">Load Available Solutions</button>       
+                    </div>
+                </div>
+            </div>
+            <div id="total-linked-solutions">
+                <div id="inner-total-linked-solutions">
+                    <div id="total-linked-solutions-data">
+                        Your Solutions: <div id="linked-solutions-length"> </div>
+                    </div>
+                </div>
+                <!-- Linked solutions go here -->
+                <div id="all-linked-solutions">
+                    <div id="inner-all-linked-solutions">
+                        
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div id="configure-solution-modal">
+            <div class="modal-header">
+                <div>Configure Your Solution</div>
+                <div id="configure-solution-exit">&#9747;</div>
+            </div>
+            <div class="solution-config-wizard">
+            </div>
+        </div>
+    </div>
+    <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
+    <script src="./scripts.js"></script>
+</body>
+</html>

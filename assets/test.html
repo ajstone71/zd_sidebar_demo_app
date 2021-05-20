@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+  body {
+    width: 350px;
+  }
+* {
+  box-sizing: border-box;
+  font-family: "Nunito Sans"
+}
+
+#loading-linked-issues {
+  display: flex;
+  height: 400px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #0C0F2F;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #0C0F2F transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#wrapper {
+  display: -webkit-flex;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+  width:100%;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #FFFFFF;
+  padding: 10px 0 0 0;
+}
+
+#header img {
+  width: 125px;
+}
+
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+}
+
+#confirm-modal {
+  display: none;
+}
+
+#tray-plugin {
+  width: 100%;
+}
+
+.panel-group {
+  width: 100%;
+}
+
+.plugin-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: solid 1px #e7e7eb;
+}
+
+.core-button-container {
+  width: 30%;
+  border: solid 2px #0D66ED;
+  background-color: #0D66ED;
+  border-radius: 5px;
+}
+
+.core-button-container:hover {
+  cursor: pointer;
+  border: solid 2px #0c4aad;
+  background-color: #0c4aad;
+}
+
+.btn {
+  width: 100%;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  padding: 5px;
+  color: #FFFFFF;
+  background-color: transparent;
+  height: 100%;
+  font-size: 12px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+#total-linked-issues {
+  padding-top: 25px;
+}
+
+#total-linked-issues, #inner-total-linked-issues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#total-linked-issues {
+  flex-direction: column;
+}
+
+#total-linked-issues-data {
+  display: flex;
+  flex-direction: row;
+  color: #1a1a3b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#inner-total-linked-issues {
+  padding-bottom: 25px;
+}
+
+#linked-issues-length {
+  padding: 0 0 0 5px;
+}
+
+#all-linked-issues, #inner-all-linked-issues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+  flex-direction: column;
+}
+
+.jira-obj {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.jira-obj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 5px;
+  padding: 5px;
+  background: #f6f6f6;
+  border: 1px solid #f6f6f6;
+  border-radius: 5px;
+}
+
+.jira-obj-icons {
+  width: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 10px;
+}
+
+.jira-obj-icon {
+  margin-left: 5px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.jira-obj-icon:nth-child(-n+2){
+  padding-bottom: 5px;
+}
+
+.jira-obj-icon:hover {
+  cursor: pointer;
+}
+
+.jira-obj-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1a1a3b;
+  overflow-wrap: break-word;
+  max-width: 200px;
+}
+
+.jira-obj-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.jira-obj-meta-data {
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #e7e7eb;
+  color: #1a1a3b !important;
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+}
+
+.jira-obj-meta-data .background {
+  margin-right: 5px;
+  background-color: #4acc94;
+  padding: 2px 4px;
+  border: 1px solid #4acc94;
+  border-radius: 5px;
+  color: #FFFFFF;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.jira-obj-meta-expand {
+  display: none;
+  flex-direction: column;
+}
+
+.jira-obj-meta-watchers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.watchers-items {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.watchers-num {
+  color: #0C0F2F !important;
+}
+
+.edit-watchers {
+  display: flex;
+}
+
+.add-watcher, .subtract-watcher {
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+#create-issue-modal {
+  height: 350px;
+  width: 500px;
+  background-color: #FFFFFF;
+  border: 1px solid #0C0F2F;
+  border-radius: 15px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  border-bottom: 1px solid #0C0F2F;
+  height: 15%;
+  width: 90%;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+#create-issue-exit:hover {
+  cursor: pointer;
+}
+
+.issue-form {
+  height: 85%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+.form-submit {
+  width: 150px;
+  height: 35px;
+  border: 1px solid #11b768;
+  background-color: #11b768;
+  font-size: 18px;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.icon-info {
+  position: absolute;
+  bottom: -20px;
+  right: 7px;
+  background: #FFFFFF;
+  padding: 5px;
+  border: 1px solid #FFFFFF;
+  border-radius: 5px; 
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.jira-obj-icon .icon-info{
+    display: none;
+}
+
+.jira-obj-icon:hover .icon-info{
+    display: block;
+}
+
+</style>
+<body>
+    <div class="jira-obj">
+        <div class="jira-obj-header">
+            <div class="jira-obj-title">
+                LUMSUGS-237
+            </div>
+            <div class="jira-obj-icons">
+                <div class="jira-obj-icon edit-jira-issue">E <div class="icon-info">Edit issue</div></div>
+                <div class="jira-obj-icon expand-jira-issue">E <div class="icon-info">Expand issue</div></div>
+                <div class="jira-obj-icon unlink-jira-issue">U <div class="icon-info">Unlink issue</div></div>
+                <div class="jira-obj-icon comments-jira-issue">C <div class="icon-info">View comments</div></div>
+            </div>
+        </div>
+        <div class="jira-obj-meta">
+            <div class="jira-obj-meta-summary jira-obj-meta-data"><div class="background">Summary:</div>Increase Plan Data Limits. Limits mate. Limits mate. Limits mate. Jabroni Perpperoni</div>
+            <div class="jira-obj-meta-assignee jira-obj-meta-data"><div class="background">Assignee:</div>jt</div>
+            <div class="jira-obj-meta-status jira-obj-meta-data"><div class="background">Status:</div>Under Review</div>
+            <div class="jira-obj-meta-issue-type jira-obj-meta-data"><div class="background">Issue Type:</div>Suggestion</div>
+            <div class="jira-obj-meta-project jira-obj-meta-data"><div class="background">Project:</div>Lumina Suggestions</div>
+            <div class="jira-obj-meta-expand">
+                <div class="jira-obj-meta-priority jira-obj-meta-data"><div class="background">Priority:</div>Medium - 3</div>
+                <div class="jira-obj-meta-fix-version jira-obj-meta-data"><div class="background">Fix Version:</div></div>
+                <div class="jira-obj-meta-watchers jira-obj-meta-data"><div class="background">Watchers:</div><div class="watchers-items"><div class="watchers-num">4</div> <div class="edit-watchers"><div class="add-watcher"><i class="fas fa-plus"></i></div><div class="subtract-watcher"><i class="fas fa-minus"></i></div></div></div></div>                                           
+            </div>
+        </div>
+    </div>
+</body>
+</html>
