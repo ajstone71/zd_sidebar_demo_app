@@ -1,0 +1,19 @@
+{
+  "name": "Zendesk Embedded Solutions",
+  "author": {
+    "name": "Austen",
+    "email": "austen@tray.io",
+    "url": ""
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": {
+    "support": {
+      "user_sidebar": "assets/index.html",
+      "ticket_sidebar": "assets/index.html",
+      "nav_bar": "assets/index.html"
+    }
+  },
+  "version": "1.0",
+  "frameworkVersion": "2.0"
+}
